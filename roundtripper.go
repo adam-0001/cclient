@@ -9,12 +9,12 @@ import (
 	"strings"
 	"sync"
 
-	http "github.com/Carcraftz/fhttp"
+	http "github.com/papermario8420/fhttp"
 
-	"github.com/Carcraftz/fhttp/http2"
+	"github.com/papermario8420/fhttp/http2"
 	"golang.org/x/net/proxy"
 
-	utls "github.com/Carcraftz/utls"
+	utls "github.com/papermario8420/utls"
 )
 
 var errProtocolNegotiated = errors.New("protocol negotiated")
