@@ -6,7 +6,7 @@ import (
 	http "github.com/papermario8420/fhttp"
 	"golang.org/x/net/proxy"
 
-	utls "github.com/Carcraftz/utls"
+	"github.com/papermario8420/utls"
 )
 
 func NewClient(clientHello utls.ClientHelloID, proxyUrl string, allowRedirect bool, timeout time.Duration) (http.Client, error) {
