@@ -2,6 +2,8 @@ package cclient
 
 import (
 	"context"
+	"crypto/tls"
+	"crypto/x509"
 	"errors"
 	"fmt"
 	"net"
@@ -62,10 +64,9 @@ func (rt *roundTripper) getTransport(req *http.Request, addr string) error {
 	return nil
 }
 
-func (rt *roundTripper) dialTLS(ctx context.Context, network, addr string) (net.Conn, error) {
+func (rt *roundTripper) dialTLS(ctx context.Context, network, addr string, cert tls.Certificate, rootCAs *x509.CertPool) (net.Conn, error) {
 	rt.Lock()
 	defer rt.Unlock()
-
 	// If we have the connection from when we determined the HTTPS
 	// cachedTransports to use, return that.
 	if conn := rt.cachedConnections[addr]; conn != nil {
@@ -83,7 +84,7 @@ func (rt *roundTripper) dialTLS(ctx context.Context, network, addr string) (net.
 		host = addr
 	}
 
-	conn := utls.UClient(rawConn, &utls.Config{ServerName: host}, rt.clientHelloId)
+	conn := utls.UClient(rawConn, &utls.Config{ServerName: host, Certificates: []utls.Certificate{cert}, RootCAs: rootCAs}, rt.clientHelloId)
 	if err = conn.Handshake(); err != nil {
 		_ = conn.Close()
 		return nil, err
