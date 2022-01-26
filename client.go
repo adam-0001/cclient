@@ -13,7 +13,7 @@ import (
 Sets new Proxy for http.Client and returns error
 Proxy should be in format: http://username:password@hostname.com:port
 */
-func SetProxy(c http.Client, proxyUrl string, clientHello utls.ClientHelloID) error {
+func SetProxy(c *http.Client, proxyUrl string, clientHello utls.ClientHelloID) error {
 	if len(proxyUrl) > 0 {
 		dialer, err := newConnectDialer(proxyUrl)
 		if err != nil {
