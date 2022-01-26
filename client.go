@@ -24,7 +24,7 @@ func (c *modClient) SetProxy(proxyUrl string, clientHello utls.ClientHelloID) er
 		c.Transport = newRoundTripper(clientHello, dialer)
 	} else {
 		dialer := proxy.Direct
-		c.Transport = newRoundTripper(utls.HelloChrome_83, dialer)
+		c.Transport = newRoundTripper(clientHello, dialer)
 	}
 	return nil
 }
