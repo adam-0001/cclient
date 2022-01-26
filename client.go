@@ -15,14 +15,17 @@ type modClient http.Client
 Sets new Proxy for http.Client and returns error
 Proxy should be in format: http://username:password@hostname.com:port
 */
-func (c *modClient) SetProxy(proxyUrl string) error {
+func (c *modClient) SetProxy(proxyUrl string, clientHello utls.ClientHelloID) error {
 	if len(proxyUrl) > 0 {
 		dialer, err := newConnectDialer(proxyUrl)
 		if err != nil {
 			return err
 		}
-		
-		
+		c.Transport = newRoundTripper(clientHello, dialer)
+	} else {
+		dialer := proxy.Direct
+		c.Transport = newRoundTripper(utls.HelloChrome_83, dialer)
+	}
 	return nil
 }
 
