@@ -3,9 +3,9 @@ module github.com/adam-0001/cclient
 go 1.17
 
 require (
-	github.com/adam-0001/fhttp v0.0.0-20220123071857-f685f762b638
-	github.com/adam-0001/utls v0.0.0-20220123065418-6da569430a40
-	golang.org/x/net v0.0.0-20220121210141-e204ce36a2ba
+	github.com/adam-0001/fhttp v0.0.0-20220213090405-ca9c15c7e216
+	github.com/adam-0001/utls v0.0.0-20220213090505-ec0bc74ee2c4
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd
 )
 
 require (
