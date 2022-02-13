@@ -1,10 +1,10 @@
-module github.com/papermario8420/cclient
+module github.com/adam-0001/cclient
 
 go 1.17
 
 require (
-	github.com/papermario8420/fhttp v0.0.0-20220123071857-f685f762b638
-	github.com/papermario8420/utls v0.0.0-20220123065418-6da569430a40
+	github.com/adam-0001/fhttp v0.0.0-20220123071857-f685f762b638
+	github.com/adam-0001/utls v0.0.0-20220123065418-6da569430a40
 	golang.org/x/net v0.0.0-20220121210141-e204ce36a2ba
 )
 

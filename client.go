@@ -3,10 +3,10 @@ package cclient
 import (
 	"time"
 
-	http "github.com/papermario8420/fhttp"
+	http "github.com/adam-0001/fhttp"
 	"golang.org/x/net/proxy"
 
-	utls "github.com/papermario8420/utls"
+	utls "github.com/adam-0001/utls"
 )
 
 /*
