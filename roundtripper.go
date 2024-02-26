@@ -13,7 +13,7 @@ import (
 	"github.com/adam-0001/fhttp/http2"
 	"golang.org/x/net/proxy"
 
-	utls "github.com/adam-0001/utls"
+	utls "github.com/refraction-networking/utls"
 )
 
 var errProtocolNegotiated = errors.New("protocol negotiated")
@@ -119,6 +119,7 @@ func (rt *roundTripper) dialTLS(ctx context.Context, network, addr string) (net.
 	return nil, errProtocolNegotiated
 }
 
+// DialTLS func(network, addr string, cfg *tls.Config) (net.Conn, error)
 func (rt *roundTripper) dialTLSHTTP2(network, addr string, _ *utls.Config) (net.Conn, error) {
 	return rt.dialTLS(context.Background(), network, addr)
 }

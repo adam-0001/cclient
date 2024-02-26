@@ -3,11 +3,10 @@ package cclient
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"testing"
 	"time"
 
-	tls "github.com/adam-0001/utls"
+	tls "github.com/refraction-networking/utls"
 )
 
 type JA3Response struct {
@@ -17,7 +16,7 @@ type JA3Response struct {
 }
 
 func readAndClose(r io.ReadCloser) ([]byte, error) {
-	readBytes, err := ioutil.ReadAll(r)
+	readBytes, err := io.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}

@@ -6,7 +6,7 @@ import (
 	http "github.com/adam-0001/fhttp"
 	"golang.org/x/net/proxy"
 
-	utls "github.com/adam-0001/utls"
+	utls "github.com/refraction-networking/utls"
 )
 
 /*
