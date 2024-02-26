@@ -31,22 +31,15 @@ type roundTripper struct {
 
 func (rt *roundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 	addr := rt.getDialTLSAddr(req)
-	rt.Lock() // Lock the mutex
 	if _, ok := rt.cachedTransports[addr]; !ok {
-		rt.Unlock() // Unlock before calling getTransport
 		if err := rt.getTransport(req, addr); err != nil {
 			return nil, err
 		}
-		rt.Lock() // Re-lock the mutex
 	}
-	transport := rt.cachedTransports[addr]
-	rt.Unlock() // Unlock after accessing cachedTransports
-	return transport.RoundTrip(req)
+	return rt.cachedTransports[addr].RoundTrip(req)
 }
 
 func (rt *roundTripper) getTransport(req *http.Request, addr string) error {
-	rt.Lock()         // Lock the mutex
-	defer rt.Unlock() // Ensure mutex is unlocked when the function exits
 	switch strings.ToLower(req.URL.Scheme) {
 	case "http":
 		rt.cachedTransports[addr] = &http.Transport{DialContext: rt.dialer.DialContext}
@@ -64,7 +57,6 @@ func (rt *roundTripper) getTransport(req *http.Request, addr string) error {
 		panic("dialTLS returned no error when determining cachedTransports")
 	default:
 		return err
-
 	}
 
 	return nil
